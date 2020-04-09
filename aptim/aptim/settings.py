@@ -152,6 +152,7 @@ LOGIN_URL = "accounts/login/"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
@@ -160,13 +161,21 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     )
-    
+
 }
-#Telling django to read the stats file from vue to inyect into index
+# Telling django to read the stats file from vue to inyect into index
+# WEBPACK_LOADER = {
+#     # 'DEFAULT': {
+#     #     'CACHE': not DEBUG,
+#     #     'BUNDLE_DIR_NAME': 'dist/',
+#     #     'STATS_FILE': os.path.join(BASE_DIR, 'aptim-frontend/dist/webpack-stats.json')
+
+#     # }
+# }
 WEBPACK_LOADER = {
-    'DEFAULT':{
-        'BUNDLE_DIR_NAME':'dist/',
-        'STATS_FILE':os.path.join(BASE_DIR,'aptim-frontend/dist','webpack-stats.json')
-        
+    'DEFAULT': {
+        'CACHE': DEBUG,
+        'BUNDLE_DIR_NAME': '/bundles/',  # must end with slash
+        'STATS_FILE': os.path.join('aptim-frontend', 'webpack-stats.json'),
     }
 }
