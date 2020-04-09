@@ -1,0 +1,3 @@
+[submodule "aptim-frontend"]
+	path = aptim-frontend
+	url = ./aptim/aptim-frontend

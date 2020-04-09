@@ -1,0 +1,6 @@
+{% extends 'auth_layout.html'%} {% block content %}
+<h1>wasabi</h1>
+<form method="POST">
+  {%csrf_token %} {{form}}
+</form>
+{% endblock %}
