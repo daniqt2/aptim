@@ -1,10 +1,22 @@
-from rest_framework.response import Response
-# from rest_framework.views import APIView
-# from users.api.serializers import UserDisplaySerializer
+from rest_framework.generics import (ListCreateAPIView,RetrieveUpdateDestroyAPIView,)
+from rest_framework.permissions import IsAuthenticated
+from ..models import userProfile
+from .permissions import IsOwnerProfileOrReadOnly
+from .serializers import userProfileSerializer
+
+# Create your views here.
+
+class UserProfileListCreateView(ListCreateAPIView):
+    queryset=userProfile.objects.all()
+    serializer_class=userProfileSerializer
+    permission_classes=[IsAuthenticated]
+
+    def perform_create(self, serializer):
+        user=self.request.user
+        serializer.save(user=user)
 
 
-# class CurrentUserAPIView(APIView):
-  
-#   def get(self,request):
-#     serializer = UserDisplaySerializer(request.user)
-#     return Response(serializer.data)
+class userProfileDetailView(RetrieveUpdateDestroyAPIView):
+    queryset=userProfile.objects.all()
+    serializer_class=userProfileSerializer
+    permission_classes=[IsOwnerProfileOrReadOnly,IsAuthenticated]

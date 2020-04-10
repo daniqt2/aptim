@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     #swagger config 
     'drf_yasg',
     
+    #third party package for user registration and authentication endpoints 	
+    'djoser',
+    'rest_framework_simplejwt',
+    
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -159,8 +163,9 @@ LOGOUT_REDIRECT_URL = "/"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication'
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication'
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',

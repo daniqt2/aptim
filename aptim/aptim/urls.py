@@ -25,33 +25,39 @@ from core.views import IndexTemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+     #path to djoser end points
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+	
+	#path to our account's app endpoints
+    path("api/accounts/",include("users.api.urls")),
     # path("accounts/register",
     #      RegistrationView.as_view(
     #          form_class=CustomUserForm,
     #          success_url="/",
     #      ), name="django_registration_register"),
 
-    path("accounts/",
-         include("django_registration.backends.one_step.urls")),
+#     path("accounts/",
+#          include("django_registration.backends.one_step.urls")),
 
-    # login url by django
-    path("accounts/",
-         include("django.contrib.auth.urls")),
+#     # login url by django
+#     path("accounts/",
+#          include("django.contrib.auth.urls")),
 
-    # login via browser
-    path("api-auth/",
-         include("rest_framework.urls")),
+#     # login via browser
+#     path("api-auth/",
+#          include("rest_framework.urls")),
 
     path("api/",
          include("users.api.urls")),
 
-    # login end points via rest
-    path("api/rest-auth/",
-         include("rest_auth.urls")),
+#     # login end points via rest
+#     path("api/rest-auth/",
+#          include("rest_auth.urls")),
 
-    # register end points via rest
-    path("api/rest-auth/registration/",
-         include("rest_auth.registration.urls")),
+#     # register end points via rest
+#     path("api/rest-auth/registration/",
+#          include("rest_auth.registration.urls")),
     
     # path(r'^auth/obtain_token/', obtain_jwt_token),
      

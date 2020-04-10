@@ -1,8 +1,7 @@
 from rest_framework import serializers
-# from users.models import CustomUser
-
-# class UserDisplaySerializer(serializers.ModelSerializer):
-  
-#   class Meta:
-#     model = CustomUser
-#     fields = ["username"]
+from ..models import userProfile
+class userProfileSerializer(serializers.ModelSerializer):
+    user=serializers.StringRelatedField(read_only=True)
+    class Meta:
+        model=userProfile
+        fields='__all__'
