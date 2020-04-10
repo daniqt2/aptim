@@ -43,13 +43,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    #swagger config 
     'drf_yasg',
     
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    'rest_auth',
+    #'rest_auth',
     'rest_auth.registration',
 
     'crispy_forms',
@@ -138,16 +139,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Custom user model
-AUTH_USER_MODEL = "users.CustomUser"
+# # Custom user model
+#AUTH_USER_MODEL = User
 
-# django crispy forms
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+# # django crispy forms
+# CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-# Django.contrib.sites config
+# # Django.contrib.sites config
 SITE_ID = 1
 
-# Register accounts via REST - django.allauth
+# # Register accounts via REST - django.allauth
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_EMAIL_REQUIRED = "True"
 
@@ -166,25 +167,11 @@ REST_FRAMEWORK = {
     )
 
 }
-# Telling django to read the stats file from vue to inyect into index
-# WEBPACK_LOADER = {
-#     # 'DEFAULT': {
-#     #     'CACHE': not DEBUG,
-#     #     'BUNDLE_DIR_NAME': 'dist/',
-#     #     'STATS_FILE': os.path.join(BASE_DIR, 'aptim-frontend/dist/webpack-stats.json')
 
-#     # }
-# }
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': DEBUG,
         'BUNDLE_DIR_NAME': '/bundles/',  # must end with slash
         'STATS_FILE': os.path.join('aptim-frontend', 'webpack-stats.json'),
     }
-}
-
-JWT_AUTH = {
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }

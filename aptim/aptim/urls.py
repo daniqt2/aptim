@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
-from users.forms import CustomUserForm
+# from users.forms import CustomUserForm
 from django_registration.backends.one_step.views import RegistrationView
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
@@ -25,11 +25,11 @@ from core.views import IndexTemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path("accounts/register",
-         RegistrationView.as_view(
-             form_class=CustomUserForm,
-             success_url="/",
-         ), name="django_registration_register"),
+    # path("accounts/register",
+    #      RegistrationView.as_view(
+    #          form_class=CustomUserForm,
+    #          success_url="/",
+    #      ), name="django_registration_register"),
 
     path("accounts/",
          include("django_registration.backends.one_step.urls")),
@@ -52,9 +52,10 @@ urlpatterns = [
     # register end points via rest
     path("api/rest-auth/registration/",
          include("rest_auth.registration.urls")),
-     path(r'^auth/obtain_token/', obtain_jwt_token),
+    
+    # path(r'^auth/obtain_token/', obtain_jwt_token),
      
-     path(r'^auth/refresh_token/', refresh_jwt_token),
+    # path(r'^auth/refresh_token/', refresh_jwt_token),
 
-    re_path(r"^.*$", IndexTemplateView.as_view(), name="app")
+    re_path("app/", IndexTemplateView.as_view(), name="app")
 ]
