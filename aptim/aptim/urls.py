@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from users.forms import CustomUserForm
 from django_registration.backends.one_step.views import RegistrationView
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from core.views import IndexTemplateView
 # One step view = we can skip email verification for now
@@ -51,6 +52,9 @@ urlpatterns = [
     # register end points via rest
     path("api/rest-auth/registration/",
          include("rest_auth.registration.urls")),
+     path(r'^auth/obtain_token/', obtain_jwt_token),
+     
+     path(r'^auth/refresh_token/', refresh_jwt_token),
 
     re_path(r"^.*$", IndexTemplateView.as_view(), name="app")
 ]
