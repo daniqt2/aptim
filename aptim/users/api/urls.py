@@ -27,11 +27,9 @@ urlpatterns=[
 #   path("user/", CurrentUserAPIView.as_view(), name="current-user"),
    url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
    url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-   url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-   # url(r'^/obtain_token/', obtain_jwt_token),
-   # url(r'^/refresh_token/', refresh_jwt_token),   
+   url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'), 
+   # paths for existing profiles
    path("all-profiles",UserProfileListCreateView.as_view(),name="all-profiles"),
    path("profile/<int:pk>",userProfileDetailView.as_view(),name="profile") 
     # The rest of the endpoints
-  # url(r'^/v1/', include('.api', namespace='apiv1')),
 ]
